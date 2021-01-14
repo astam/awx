@@ -1,4 +1,5 @@
-localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python3"
+# localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python3"
+192.168.3.3 ansible_python_interpreter="/usr/bin/env python3"
 
 [all:vars]
 
@@ -7,57 +8,6 @@ localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env pyth
 # be selected based on: latest, 1, 1.0, 1.0.0, 1.0.0.123
 # by default the base will be used to search for ansible/awx
 dockerhub_base=ansible
-
-# Openshift Install
-# Will need to set -e openshift_password=developer -e docker_registry_password=$(oc whoami -t)
-#           or set -e openshift_token=TOKEN
-# openshift_host=127.0.0.1:8443
-# openshift_project=awx
-# openshift_user=developer
-# openshift_skip_tls_verify=False
-# openshift_pg_emptydir=True
-
-# Kubernetes Install
-# kubernetes_context=test-cluster
-# kubernetes_namespace=awx
-# kubernetes_web_svc_type=NodePort
-# Optional Kubernetes Variables
-# pg_image_registry=docker.io
-# pg_serviceaccount=awx
-# pg_volume_capacity=5
-# pg_persistence_storageClass=StorageClassName
-# pg_persistence_existingclaim=postgres_pvc
-# pg_cpu_limit=1000
-# pg_mem_limit=2
-
-# Kubernetes Ingress Configuration
-# You can use the variables below to configure Kubernetes Ingress
-# Set hostname
-# kubernetes_ingress_hostname=awx.example.org
-# Add annotations. The example below shows an annotation to be used with Traefik but other Ingress controllers are also supported
-# kubernetes_ingress_annotations={'kubernetes.io/ingress.class': 'traefik', 'traefik.ingress.kubernetes.io/redirect-entry-point': 'https'}
-# Specify a secret for TLS termination
-# kubernetes_ingress_tls_secret=awx-cert
-
-# Kubernetes and Openshift Install Resource Requests
-# These are the request and limit values for a pod's container for task/web/redis/management.
-# The total amount of requested resources for a pod is the sum of all
-# resources requested by all containers in the pod
-# A cpu_request of 1500 is 1.5 cores for the container to start out with.
-# A cpu_limit defines the maximum cores that that container can reserve.
-# A mem_request of 2 is for 2 gigabytes of memory for the container
-# A mem_limit defines the maximum memory that that container can reserve.
-# Default values for these entries can be found in ./roles/kubernetes/defaults/main.yml
-# task_cpu_request=1500
-# task_mem_request=2
-# task_cpu_limit=2000
-# task_mem_limit=4
-# web_cpu_limit=1000
-# web_mem_limit=2
-# redis_cpu_limit=1000
-# redis_mem_limit=3
-# management_cpu_limit=2000
-# management_mem_limit=2
 
 # Common Docker parameters
 awx_task_hostname=awx
@@ -128,7 +78,7 @@ secret_key=awxsecret
 # By default a broadcast websocket secret will be generated.
 # If you would like to *rerun the playbook*, you need to set a unique password.
 # Otherwise it would generate a new one every playbook run.
-# broadcast_websocket_secret=
+broadcast_websocket_secret=websocket
 
 # Build AWX with official logos
 # Requires cloning awx-logos repo as a sibling of this project.
